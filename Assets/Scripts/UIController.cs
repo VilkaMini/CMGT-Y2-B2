@@ -8,6 +8,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image[] listOfImages;
     [SerializeField] private int activeSchematic = 0;
 
+    [SerializeField] private GameObject schematics2DGroup;
+    [SerializeField] private GameObject schematics3DGroup;
+    
     void Start()
     {
         // Form array of Images and set all to invisible apart from first one
@@ -71,5 +74,11 @@ public class UIController : MonoBehaviour
             activeSchematic--;
         }
         DisplaySchematic(activeSchematic);
+    }
+
+    public void SwitchSchematicMode()
+    {
+        schematics2DGroup.SetActive(!schematics2DGroup.activeSelf);
+        schematics3DGroup.SetActive(!schematics3DGroup.activeSelf);
     }
 }
