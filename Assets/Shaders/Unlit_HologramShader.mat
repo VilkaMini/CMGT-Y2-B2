@@ -29,7 +29,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Transparency: 0.25
+    - _Amount: 1
+    - _Amplitude: 1
+    - _CutoutThresh: 0.44
+    - _Distance: 0.2
+    - _Speed: 5.47
+    - _Transparency: 0.426
     m_Colors:
     - _TintColor: {r: 0, g: 0.024193246, b: 0.24528301, a: 1}
   m_BuildTextureStacks: []
