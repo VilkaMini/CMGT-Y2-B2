@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="14.00" multi-file="no" uid="simp257d7da0cd4a4477a810c2007f11e20a" creation-date="12/10/2023 15:36:56">
+  <meta>
+    <name>Firefighter-Gadget</name>
+    <authors>Vilius Alaunis</authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="class" type="Class" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type stereotype="interface" type-id="uml-interface-classifier" type="Interface" />
+        <value>1</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="class" type="Class" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="property" type="Property" />
+        <value>18</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="Association" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="uml-interface-classifier" type="Interface" />
+        <value>2</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>9</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management uid="md-24ff539a0e534894b191aef2a61bb31e" name="" task-id-sequence="0">
+    <persons>
+      <person id="">
+        <first-name>Vilius</first-name>
+        <last-name>Alaunis</last-name>
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-5f32747a56e34746a4646596b36a4020" name="" order-index="-1" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <parameters />
+      <types>
+        <type id="Class:6815e39e853a43629c7e1c5bf21f9372" name="UIController" class-ref="6815e39e853a43629c7e1c5bf21f9372" />
+        <type id="Image" name="Image" />
+        <type id="Class:425516fc7ec3463bb5e709037c10b358" name="CameraPivotControl" class-ref="425516fc7ec3463bb5e709037c10b358" />
+        <type id="float" name="float" />
+      </types>
+    </custom-types>
+  </types>
+  <items>
+    <item id="e97decb965db402a8487b6c6de7b3051" cid="PROP016" type="property" owner="2cb0e606485d42b5a352d657cec98591" creator="" creation-date="12/10/2023 16:03:14" visibility="private">
+      <structural-feature type="UIController" type-id="Class:6815e39e853a43629c7e1c5bf21f9372" />
+    </item>
+    <item id="f19617e88823442ab855b8a4633d1d46" cid="PROP017" type="property" owner="2cb0e606485d42b5a352d657cec98591" creator="" creation-date="12/10/2023 16:03:14" visibility="private">
+      <structural-feature type="CameraPivotControl" type-id="Class:425516fc7ec3463bb5e709037c10b358" />
+    </item>
+  </items>
+  <models>
+    <model id="pd4de9e8839c5465ab61b4cd5a655bd13_448282325" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>12/10/2023 15:37:15</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p3433c070b15b42d390af010f20d6fb91_195737954" name="FirefighterGadget" order-index="1" uid="" auto-routed-paths="false" default-line-style="default" view-location="-121,-134" zoom="0.8">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/10/2023 15:37:15</creation-date>
+          <change-date>12/10/2023 16:07:30</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="425516fc7ec3463bb5e709037c10b358" cid="C001" type="class" name="CameraPivotControl" creator="" creation-date="12/10/2023 15:45:17">
+            <owned-items />
+            <attributes>
+              <attribute id="ac767e6e4d2f94542966c10365dccef1412" cid="PROP001" name="Camera" creation-date="12/10/2023 15:46:58" property-ref="f625ff37b6e347f3b4873faa7eafb2a2" />
+              <attribute id="a5f9b59338b3649288e07d9abb7586165994" cid="PROP002" name="_touchBeginPosition" creation-date="12/10/2023 15:48:08" property-ref="b41a7596b97149c8a63836645ed0287d" />
+              <attribute id="a800e077a3a5a4443a27f891c5d167852324" cid="PROP003" name="touchMovedPosition" creation-date="12/10/2023 15:49:40" property-ref="55d8483e99784d858f6f3f4cedb3d330" />
+              <attribute id="acbfa325ede1f4405bc85e1223e45e994567" cid="PROP004" name="_originBeginPosition" creation-date="12/10/2023 15:50:01" property-ref="da387cdb45744c068280b5646edd873b" />
+              <attribute id="acb231926f03e4d47a4e508c67f51d6dd924" cid="PROP005" name="_originMovedPosition" creation-date="12/10/2023 15:50:25" property-ref="752a5680013441189462b2b56ebd7103" />
+              <attribute id="abca880a08287423fb4ba33084dbe550a446" cid="PROP006" name="cameraSpeedMultiplier" creation-date="12/10/2023 15:50:38" property-ref="c0f10ea6919446ab991281f4e757fbeb" />
+              <attribute id="a246b16000dee4b989bedcc5d3bdbc414883" cid="PROP007" name="_pivotRotationX" creation-date="12/10/2023 15:50:51" property-ref="d3f128798cd54ac5a0129aa893fbc003" />
+              <attribute id="a05ce27c44c154243bdcec9eb8cb68833297" cid="PROP008" name="_pivotRotationY" creation-date="12/10/2023 15:51:07" property-ref="322c4271375a4e21bc5bf2db92c4c1a6" />
+            </attributes>
+            <operations>
+              <operation id="o4c34b195c80a40a9945f504d7860e5a6472" cid="OP001" name="Update" creation-date="12/10/2023 15:51:42" type="" type-id="" visibility="private" />
+              <operation id="o536a09ea88db49088afdd4775cb2cc24300" cid="OP002" name="DetectInput" creation-date="12/10/2023 15:52:36" type="" type-id="" visibility="private" />
+              <operation id="o88be54be8254456ba451743e5ec08ba4721" cid="OP003" name="DetectMoveInput" creation-date="12/10/2023 15:52:48" type="" type-id="" visibility="private" />
+              <operation id="o6fb628e88cb54331b46b2454b75a50c4906" cid="OP004" name="RotateCamera" creation-date="12/10/2023 15:52:59" type="" type-id="" visibility="private" />
+            </operations>
+          </item>
+          <item id="f625ff37b6e347f3b4873faa7eafb2a2" cid="PROP001" type="property" name="Camera" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:46:58" visibility="private">
+            <structural-feature type="Object" type-id="Uml.Object" />
+          </item>
+          <item id="752a5680013441189462b2b56ebd7103" cid="PROP005" type="property" name="_originMovedPosition" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:50:25" visibility="private">
+            <structural-feature multiplicity="2" type="float" type-id="float" />
+          </item>
+          <item id="55d8483e99784d858f6f3f4cedb3d330" cid="PROP003" type="property" name="touchMovedPosition" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:49:40" visibility="private">
+            <structural-feature multiplicity="2" type="float" type-id="float" />
+          </item>
+          <item id="934e2d6e18e64781a23a39fcedff7a89" cid="PROP010" type="property" name="listOfImages" owner="6815e39e853a43629c7e1c5bf21f9372" creator="" creation-date="12/10/2023 15:54:21" visibility="private">
+            <structural-feature multiplicity="*" type="Image" type-id="Image" />
+          </item>
+          <item id="322c4271375a4e21bc5bf2db92c4c1a6" cid="PROP008" type="property" name="_pivotRotationY" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:51:07" visibility="private">
+            <structural-feature type="float" type-id="float" />
+          </item>
+          <item id="1e9deeb57c8a4f269f1d81ff004f284d" cid="PROP009" type="property" name="listOfSchematicsObject" owner="6815e39e853a43629c7e1c5bf21f9372" creator="" creation-date="12/10/2023 15:53:56" visibility="private">
+            <structural-feature type="Object" type-id="Uml.Object" />
+          </item>
+          <item id="6815e39e853a43629c7e1c5bf21f9372" cid="C002" type="class" name="UIController" creator="" creation-date="12/10/2023 15:53:48">
+            <owned-items />
+            <attributes>
+              <attribute id="abc20ae80aef740d6890f8e9f3f0d24bb44" cid="PROP009" name="listOfSchematicsObject" creation-date="12/10/2023 15:53:56" property-ref="1e9deeb57c8a4f269f1d81ff004f284d" />
+              <attribute id="aa68d4318cff14945a6b11d708ac74202908" cid="PROP010" name="listOfImages" creation-date="12/10/2023 15:54:21" property-ref="934e2d6e18e64781a23a39fcedff7a89" />
+              <attribute id="ae715b295a4164aa693043a1306aa3adc611" cid="PROP011" name="activeSchematic" creation-date="12/10/2023 15:54:53" property-ref="fded33b324544ec0af3c67914ec70e43" />
+              <attribute id="ac013d8c79207414ca630da45fe4bcf05537" cid="PROP012" name="schematics2DGroup" creation-date="12/10/2023 15:55:04" property-ref="9b50f5f83b4846dcbb46da840ef16481" />
+              <attribute id="aa84b2e025a984ae8a1023ec7bcebbe19162" cid="PROP013" name="schematics3DGroup" creation-date="12/10/2023 15:55:17" property-ref="eca1255b95d24dacbabe70071b6d91b0" />
+            </attributes>
+            <operations>
+              <operation id="o801689f598e14835b94ad601c5b7ca3b105" cid="OP005" name="Start" creation-date="12/10/2023 15:55:31" type="" type-id="" visibility="private" />
+              <operation id="o5d679910fd984a06aa015d05a3dcdace730" cid="OP006" name="DisplaySchematic" creation-date="12/10/2023 15:55:35" type="" type-id="" visibility="private">
+                <parameters>
+                  <parameter id="p16c38504f3714d108794966056594c21" name="schematicIndex" type="Integer" type-id="Uml.Integer" creation-date="12/10/2023 15:55:54" />
+                </parameters>
+              </operation>
+              <operation id="o97a103178363437b8d8b978d504fb3ae73" cid="OP007" name="PressSchematicControl" creation-date="12/10/2023 15:56:02" type="" type-id="" visibility="private">
+                <parameters>
+                  <parameter id="p38b8b0744c0c4b88a2deb31d0072a567" name="previousOrNext" type="Boolean" type-id="Uml.Boolean" creation-date="12/10/2023 15:56:21" />
+                </parameters>
+              </operation>
+              <operation id="o521b7370156f42078bb79b09c3480c31323" cid="OP008" name="SwitchSchematicMode" creation-date="12/10/2023 15:56:23" type="" type-id="" visibility="private" />
+            </operations>
+          </item>
+          <item id="c0f10ea6919446ab991281f4e757fbeb" cid="PROP006" type="property" name="cameraSpeedMultiplier" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:50:38" visibility="private">
+            <structural-feature type="float" type-id="float" />
+          </item>
+          <item id="9b50f5f83b4846dcbb46da840ef16481" cid="PROP012" type="property" name="schematics2DGroup" owner="6815e39e853a43629c7e1c5bf21f9372" creator="" creation-date="12/10/2023 15:55:04" visibility="private">
+            <structural-feature type="Object" type-id="Uml.Object" />
+          </item>
+          <item id="fded33b324544ec0af3c67914ec70e43" cid="PROP011" type="property" name="activeSchematic" owner="6815e39e853a43629c7e1c5bf21f9372" creator="" creation-date="12/10/2023 15:54:53" visibility="private">
+            <structural-feature type="Integer" type-id="Uml.Integer" />
+          </item>
+          <item id="eca1255b95d24dacbabe70071b6d91b0" cid="PROP013" type="property" name="schematics3DGroup" owner="6815e39e853a43629c7e1c5bf21f9372" creator="" creation-date="12/10/2023 15:55:17" visibility="private">
+            <structural-feature type="Object" type-id="Uml.Object" />
+          </item>
+          <item id="b41a7596b97149c8a63836645ed0287d" cid="PROP002" type="property" name="_touchBeginPosition" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:48:08" visibility="private">
+            <structural-feature multiplicity="2" type="float" type-id="float" />
+          </item>
+          <item id="d3f128798cd54ac5a0129aa893fbc003" cid="PROP007" type="property" name="_pivotRotationX" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:50:51" visibility="private">
+            <structural-feature type="float" type-id="float" />
+          </item>
+          <item id="2cb0e606485d42b5a352d657cec98591" cid="REL002" type="relationship" creator="" creation-date="12/10/2023 16:03:14" from="6815e39e853a43629c7e1c5bf21f9372" to="425516fc7ec3463bb5e709037c10b358" visibility="package">
+            <owned-items />
+            <relation from="6815e39e853a43629c7e1c5bf21f9372" to="425516fc7ec3463bb5e709037c10b358" derived="false">
+              <start-role id="umlar-2d6a996d-0acd-4a99-8ffe-43e66e7e96d0" name="" navigability="" association-type="association" visibility="private" property-ref="e97decb965db402a8487b6c6de7b3051" />
+              <end-role id="umlar-4919935e-3cc5-4aa1-8251-84eda180009b" name="" navigability="" association-type="association" visibility="private" property-ref="f19617e88823442ab855b8a4633d1d46" />
+            </relation>
+          </item>
+          <item id="da387cdb45744c068280b5646edd873b" cid="PROP004" type="property" name="_originBeginPosition" owner="425516fc7ec3463bb5e709037c10b358" creator="" creation-date="12/10/2023 15:50:01" visibility="private">
+            <structural-feature multiplicity="2" type="float" type-id="float" />
+          </item>
+        </abstract-items>
+        <layer id="ecf38af2554c42a5addeb42ae1fc48a5" name="Default" visible="true" enabled="true" locked="false">
+          <item id="425516fc7ec3463bb5e709037c10b358" iid="570e4a146fdb4327b1f797d09f485772" show-fields="true" creation-date="12/10/2023 15:45:17" order-index="0" type="entity">
+            <layout ax="63" ay="83" awidth="204" aheight="269" x="63" y="83" width="195" height="260" />
+            <classifier />
+            <class />
+          </item>
+          <item id="6815e39e853a43629c7e1c5bf21f9372" iid="21415e03ea804db9a144b12b492ca0ae" show-fields="true" creation-date="12/10/2023 15:53:48" order-index="1" type="entity">
+            <layout ax="527" ay="49.5" awidth="326" aheight="336" x="527" y="49.5" width="326" height="336" />
+            <classifier />
+            <class />
+          </item>
+          <item id="2cb0e606485d42b5a352d657cec98591" iid="370f946b2a204bbabf11d57cfa57765d" creation-date="12/10/2023 16:03:14" order-index="2" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="false" auto-path="" x1="527" y1="218" x2="267" y2="218" start-border-pos="0.8746279761904762" end-border-pos="0.3754646840148699" name-position="1,20">
+              <points>
+                <point x="527" y="218" />
+                <point x="267" y="218" />
+              </points>
+            </layout>
+            <relation from="6815e39e853a43629c7e1c5bf21f9372" from-iid="21415e03ea804db9a144b12b492ca0ae" to="425516fc7ec3463bb5e709037c10b358" to-iid="570e4a146fdb4327b1f797d09f485772" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>
