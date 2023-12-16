@@ -4,8 +4,8 @@ using static DataTypes;
 
 public class GameStateController : MonoBehaviour
 {
-    private InputManager _inputManager;
     private ControlState _gameState;
+    private UserInterfaceController _userInterface;
 
     public ControlState GameState
     {
@@ -15,7 +15,6 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
-        _inputManager = GetComponent<InputManager>();
         _gameState = ControlState.View3D;
     }
 
@@ -24,13 +23,10 @@ public class GameStateController : MonoBehaviour
         switch (_gameState)
         {
             case ControlState.View3D:
-                print("3DView");
                 break;
             case ControlState.View2D:
-                print("2DView");
                 break;
             case ControlState.ViewDraw:
-                print("DrawView");
                 break;
         }
     }
@@ -38,5 +34,6 @@ public class GameStateController : MonoBehaviour
     public void ChangeGameState(int state)
     {
         GameState = (ControlState)state;
+        _userInterface.ChangeUI(GameState);
     }
 }

@@ -12,17 +12,17 @@ public class InputManager : MonoBehaviour
         return Input.touchCount == 2;
     }
 
-    public Vector2 GetTouch()
+    public Touch GetTouch()
     {
-        return Input.GetTouch(0).position;
+        return Input.GetTouch(0);
     }
 
-    public Vector2[] GetDoubleTouch()
+    public Touch[] GetDoubleTouch()
     {
-        return new Vector2[]
+        return new Touch[]
         {
-            Input.GetTouch(0).position, 
-            Input.GetTouch(1).position
+            Input.GetTouch(0), 
+            Input.GetTouch(1)
         };
     }
 }
