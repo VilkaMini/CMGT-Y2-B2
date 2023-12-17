@@ -664,8 +664,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 843623928}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 540713894}
+        m_TargetAssemblyTypeName: UserInterfaceController, Assembly-CSharp
         m_MethodName: PressSchematicControl
         m_Mode: 6
         m_Arguments:
@@ -909,7 +909,7 @@ Transform:
   m_GameObject: {fileID: 422218013}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1121,11 +1121,11 @@ GameObject:
   m_Component:
   - component: {fileID: 540713888}
   - component: {fileID: 540713889}
+  - component: {fileID: 540713894}
   - component: {fileID: 540713890}
   - component: {fileID: 540713891}
   - component: {fileID: 540713893}
   - component: {fileID: 540713892}
-  - component: {fileID: 540713894}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1222,6 +1222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0705eea3da1464483ed182f59ce652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listOfSchematicsObject: {fileID: 511304505}
+  listOfImages: []
+  activeSchematic: 0
+  schematics2DGroup: {fileID: 2060521985}
+  schematics3DGroup: {fileID: 1586260850}
 --- !u!1 &656880745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1468,6 @@ GameObject:
   - component: {fileID: 843623926}
   - component: {fileID: 843623925}
   - component: {fileID: 843623924}
-  - component: {fileID: 843623928}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1555,23 +1559,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &843623928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843623923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd3fef32f9afa1347b71b3f848f78899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listOfSchematicsObject: {fileID: 511304505}
-  listOfImages: []
-  activeSchematic: 0
-  schematics2DGroup: {fileID: 2060521985}
-  schematics3DGroup: {fileID: 1586260850}
 --- !u!1 &990607786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,8 +3117,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 843623928}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 540713894}
+        m_TargetAssemblyTypeName: UserInterfaceController, Assembly-CSharp
         m_MethodName: PressSchematicControl
         m_Mode: 6
         m_Arguments:

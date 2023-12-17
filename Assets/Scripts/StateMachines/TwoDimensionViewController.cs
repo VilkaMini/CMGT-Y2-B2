@@ -7,7 +7,7 @@ public class TwoDimensionViewController : ControllerBase
     {
         if (stateController.GameState == ControlState.View2D)
         {
-            print("Using 2D View Script");
+            
         }
     }
 }

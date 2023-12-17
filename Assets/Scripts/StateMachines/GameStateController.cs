@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using static DataTypes;
 
+[RequireComponent(typeof(UserInterfaceController))]
 public class GameStateController : MonoBehaviour
 {
     private ControlState _gameState;
@@ -16,6 +17,7 @@ public class GameStateController : MonoBehaviour
     private void Start()
     {
         _gameState = ControlState.View3D;
+        _userInterface = GetComponent<UserInterfaceController>();
     }
 
     private void Update()
