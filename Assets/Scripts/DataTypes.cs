@@ -7,6 +7,16 @@ public static class DataTypes
     {
         View3D,
         View2D,
-        ViewDraw
+        ViewDraw,
+        ViewCrashSelection
+    }
+    
+    [Serializable]
+    public enum RotationSide
+    {
+        Front,
+        Right,
+        Left,
+        Back
     }
 }

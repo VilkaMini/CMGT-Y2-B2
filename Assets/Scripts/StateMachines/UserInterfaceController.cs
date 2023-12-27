@@ -10,6 +10,7 @@ public class UserInterfaceController : MonoBehaviour
 
     [SerializeField] private GameObject schematics2DGroup;
     [SerializeField] private GameObject schematics3DGroup;
+    [SerializeField] private GameObject crashSelectScreen;
     
     void Start()
     {
@@ -78,16 +79,19 @@ public class UserInterfaceController : MonoBehaviour
     
     public void ChangeUI(ControlState gameState)
     {
-        print(gameState);
+        schematics2DGroup.SetActive(false);
+        schematics3DGroup.SetActive(false);
+        crashSelectScreen.SetActive(false);
         switch (gameState)
         {
             case ControlState.View3D:
-                schematics2DGroup.SetActive(false);
                 schematics3DGroup.SetActive(true);
                 break;
             case ControlState.View2D:
                 schematics2DGroup.SetActive(true);
-                schematics3DGroup.SetActive(false);
+                break;
+            case ControlState.ViewCrashSelection:
+                crashSelectScreen.SetActive(true);
                 break;
         }
     }

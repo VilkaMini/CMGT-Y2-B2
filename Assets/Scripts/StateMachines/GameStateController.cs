@@ -7,6 +7,7 @@ public class GameStateController : MonoBehaviour
 {
     private ControlState _gameState;
     private UserInterfaceController _userInterface;
+    [SerializeField] private NetworkManagerController _networkManager;
 
     public ControlState GameState
     {
@@ -16,7 +17,7 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
-        _gameState = ControlState.View3D;
+        _gameState = ControlState.ViewCrashSelection;
         _userInterface = GetComponent<UserInterfaceController>();
     }
 
@@ -30,6 +31,8 @@ public class GameStateController : MonoBehaviour
                 break;
             case ControlState.ViewDraw:
                 break;
+            case ControlState.ViewCrashSelection:
+                break;
         }
     }
 
@@ -37,5 +40,6 @@ public class GameStateController : MonoBehaviour
     {
         GameState = (ControlState)state;
         _userInterface.ChangeUI(GameState);
+        _networkManager.ActOnStateChange(GameState);
     }
 }

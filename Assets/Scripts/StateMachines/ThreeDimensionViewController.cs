@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using static DataTypes;
 
@@ -10,6 +11,9 @@ public class ThreeDimensionViewController : ControllerBase
     [SerializeField] private GameObject cameraPivot;
     private float _pivotRotationX;
     private float _pivotRotationY;
+
+    private bool _inputDrivenRotation = false;
+    private float lerpValue;
     
     void Update()
     {
@@ -42,7 +46,10 @@ public class ThreeDimensionViewController : ControllerBase
                 _touchBeginPosition = Vector2.zero;
                 _touchMovedPosition = Vector2.zero;
             }
+
+            _inputDrivenRotation = true;
         }
+        _inputDrivenRotation = false;
     }
     
     /// <summary>
@@ -51,7 +58,6 @@ public class ThreeDimensionViewController : ControllerBase
     private void RotateCamera()
     {
         Vector2 touchMoveDir = _touchBeginPosition - _touchMovedPosition;
-        print(touchMoveDir);
         
         var rotCheckVal = _pivotRotationY + touchMoveDir.y * cameraSpeedMultiplier;
         if (rotCheckVal is >= -20 and <= 20)
@@ -64,6 +70,38 @@ public class ThreeDimensionViewController : ControllerBase
             _pivotRotationX += touchMoveDir.x * cameraSpeedMultiplier;
         }
 
-        cameraPivot.transform.rotation = Quaternion.Euler(_pivotRotationY, _pivotRotationX, 0);
+        if (_inputDrivenRotation)
+        {
+            cameraPivot.transform.rotation = Quaternion.Euler(_pivotRotationY, _pivotRotationX, 0);
+        }
+        else
+        {
+            cameraPivot.transform.rotation = Quaternion.Lerp(cameraPivot.transform.rotation, Quaternion.Euler(_pivotRotationY, _pivotRotationX, 0), lerpValue);
+            lerpValue += Time.deltaTime;
+        }
+    }
+
+    public void OverrideRotationCamera(int rotationSide)
+    {
+        switch ((RotationSide)rotationSide)
+        {
+            case RotationSide.Front:
+                _pivotRotationY = 0.0f;
+                _pivotRotationX = 90.0f;
+                break;
+            case RotationSide.Right:
+                _pivotRotationY = 0.0f;
+                _pivotRotationX = 180.0f;
+                break;
+            case RotationSide.Left:
+                _pivotRotationY = 0.0f;
+                _pivotRotationX = 0.0f;
+                break;
+            case RotationSide.Back:
+                _pivotRotationY = 0.0f;
+                _pivotRotationX = -90.0f;
+                break;
+        }
+        lerpValue = 0.0f;
     }
 }
