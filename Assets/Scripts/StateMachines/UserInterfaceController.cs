@@ -11,6 +11,9 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject schematics2DGroup;
     [SerializeField] private GameObject schematics3DGroup;
     [SerializeField] private GameObject crashSelectScreen;
+    [SerializeField] private GameObject drawViewGroup;
+
+    [SerializeField] private Camera viewCam;
     
     void Start()
     {
@@ -79,9 +82,11 @@ public class UserInterfaceController : MonoBehaviour
     
     public void ChangeUI(ControlState gameState)
     {
+        viewCam.orthographic = false;
         schematics2DGroup.SetActive(false);
         schematics3DGroup.SetActive(false);
         crashSelectScreen.SetActive(false);
+        drawViewGroup.SetActive(false);
         switch (gameState)
         {
             case ControlState.View3D:
@@ -92,6 +97,10 @@ public class UserInterfaceController : MonoBehaviour
                 break;
             case ControlState.ViewCrashSelection:
                 crashSelectScreen.SetActive(true);
+                break;
+            case ControlState.ViewDraw:
+                viewCam.orthographic = true;
+                drawViewGroup.SetActive(true);
                 break;
         }
     }

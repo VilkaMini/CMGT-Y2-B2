@@ -81,6 +81,9 @@ public class ThreeDimensionViewController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Method <c>OverrideRotationCamera</c> rotates camera pivot point around the target to a specific rotation.
+    /// </summary>
     public void OverrideRotationCamera(int rotationSide)
     {
         switch ((RotationSide)rotationSide)
