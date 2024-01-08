@@ -89,7 +89,11 @@ public class DrawViewController : ControllerBase
         if (Physics.Raycast(lineRenderComp.bounds.center, newLine.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.DrawRay(lineRenderComp.bounds.center, newLine.transform.forward * 1000, Color.yellow, duration:500);
-            Debug.Log("Hit: " + hit.collider.gameObject.name);
+            if (hit.transform.gameObject.tag == "CarPart")
+            {
+                Debug.Log(hit.point);
+                hit.collider.gameObject.GetComponentInParent<CarSignManager>().PlaceSignAtLocation(hit.point);
+            }
         }
         
         Destroy(newLine);
