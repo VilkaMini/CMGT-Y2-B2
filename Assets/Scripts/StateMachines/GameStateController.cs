@@ -9,6 +9,9 @@ public class GameStateController : MonoBehaviour
     private UserInterfaceController _userInterface;
     [SerializeField] private NetworkManagerController _networkManager;
 
+    /// <summary>
+    /// Enum <c>ControlState</c> is used to indicate the state the game is in.
+    /// </summary>
     public ControlState GameState
     {
         get { return _gameState; }
@@ -20,22 +23,11 @@ public class GameStateController : MonoBehaviour
         _gameState = ControlState.ViewCrashSelection;
         _userInterface = GetComponent<UserInterfaceController>();
     }
-
-    private void Update()
-    {
-        switch (_gameState)
-        {
-            case ControlState.View3D:
-                break;
-            case ControlState.View2D:
-                break;
-            case ControlState.ViewDraw:
-                break;
-            case ControlState.ViewCrashSelection:
-                break;
-        }
-    }
-
+    
+    /// <summary>
+    /// Method <c>ChangeGameState</c> is used by to change the state of which the game is in.
+    /// <param name="state">integer that tells which state the game should switch to based on ControlState</param>
+    /// </summary>
     public void ChangeGameState(int state)
     {
         GameState = (ControlState)state;

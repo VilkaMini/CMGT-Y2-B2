@@ -1,3 +1,4 @@
+using TMPro;
 using static DataTypes;
 using UnityEngine;
 
@@ -12,8 +13,14 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject schematics3DGroup;
     [SerializeField] private GameObject crashSelectScreen;
     [SerializeField] private GameObject drawViewGroup;
+    [SerializeField] private GameObject setupGroup;
+    [SerializeField] private GameObject setupNumberGroup;
+    [SerializeField] private TMP_InputField numberPlateInputField;
+    [SerializeField] private GameObject setupSeatsGroup;
 
     [SerializeField] private Camera viewCam;
+
+    private bool _setupComplete = false;
     
     void Start()
     {
@@ -80,6 +87,10 @@ public class UserInterfaceController : MonoBehaviour
         DisplaySchematic(activeSchematic);
     }
     
+    /// <summary>
+    /// Method <c>ChangeUI</c> is used by Buttons on the Canvas to react to state change.
+    /// <param name="gameState">ControlState that indicates which state the game is in.</param>
+    /// </summary>
     public void ChangeUI(ControlState gameState)
     {
         viewCam.orthographic = false;
@@ -87,6 +98,7 @@ public class UserInterfaceController : MonoBehaviour
         schematics3DGroup.SetActive(false);
         crashSelectScreen.SetActive(false);
         drawViewGroup.SetActive(false);
+        setupGroup.SetActive(false);
         switch (gameState)
         {
             case ControlState.View3D:
@@ -102,6 +114,30 @@ public class UserInterfaceController : MonoBehaviour
                 viewCam.orthographic = true;
                 drawViewGroup.SetActive(true);
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Method <c>SetupControl</c> is used to complete the initial setup for a car.
+    /// <param name="step">integer that indicates which step of the setup is done.</param>
+    /// </summary>
+    public void SetupControl(int step)
+    {
+        if (_setupComplete)
+        {
+            GetComponent<GameStateController>().ChangeGameState(0);
+            return;
+        }
+
+        setupGroup.SetActive(true);
+        if (step == 0)
+        {
+            if (numberPlateInputField.text.Length == 6)
+            {
+                setupNumberGroup.SetActive(false);
+                setupSeatsGroup.SetActive(true);
+                _setupComplete = true;
+            }
         }
     }
 }
