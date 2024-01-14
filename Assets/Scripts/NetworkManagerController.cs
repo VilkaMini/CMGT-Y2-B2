@@ -1,9 +1,14 @@
+using System;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using static DataTypes;
 
 public class NetworkManagerController : NetworkBehaviour
 {
+    private int _activeCar = 0;
+    [SerializeField] private Transform carModelsPrefabs;
+    [SerializeField] private List<Transform> carObjectTransforms;
     [SerializeField] private Transform car3DModelPrefab;
     private Transform spawnedObjectTransform;
     
@@ -12,20 +17,21 @@ public class NetworkManagerController : NetworkBehaviour
     /// </summary>
     public void SpawnModel()
     {
-        spawnedObjectTransform = Instantiate(car3DModelPrefab);
-        spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
+        carObjectTransforms[_activeCar] = Instantiate(car3DModelPrefab);
+        carObjectTransforms[_activeCar].GetComponent<NetworkObject>().Spawn(true);
     }
 
     /// <summary>
     /// Method <c>ActOnStateChange</c> changes the networked objects based on state of game on client.
     /// <param name="gameState">ControlState used to proceed with logic.</param>
     /// </summary>
-    public void ActOnStateChange(ControlState gameState)
+    public void ActOnStateChange(ControlState gameState, int carId)
     {
-        if (gameState == ControlState.ViewCrashSelection) TurnOffCarServerRpc();
-        if (gameState == ControlState.View3D && spawnedObjectTransform) TurnOnCarServerRpc();
+        if (gameState == ControlState.ManagerSetup || gameState == ControlState.MemberSetup) return;
+        if (gameState == ControlState.ViewCrashSelection) TurnOffCarServerRpc(carId);
+        if (gameState == ControlState.View3D && carObjectTransforms[_activeCar]) TurnOnCarServerRpc(carId);
         
-        if (spawnedObjectTransform) return;
+        if (carObjectTransforms[_activeCar]) return;
         if (IsServer) SpawnModel();
     }
 
@@ -33,20 +39,20 @@ public class NetworkManagerController : NetworkBehaviour
     /// Method <c>TurnOnCarServerRpc</c> executes only on server when client requests car to display.
     /// </summary>
     [ServerRpc(RequireOwnership = false)]
-    private void TurnOnCarServerRpc(ServerRpcParams serverRpcParams = default)
+    private void TurnOnCarServerRpc(int carId ,ServerRpcParams serverRpcParams = default)
     {
-        TurnOnCarClientRpc(serverRpcParams.Receive.SenderClientId);
+        TurnOnCarClientRpc(carId ,serverRpcParams.Receive.SenderClientId);
     }
 
     /// <summary>
     /// Method <c>TurnOnCarClientRpc</c> executes only on client with specific client Id to show the car.
     /// </summary>
     [ClientRpc]
-    private void TurnOnCarClientRpc(ulong clientID)
+    private void TurnOnCarClientRpc(int carId, ulong clientID)
     {
         if (clientID == NetworkManager.Singleton.LocalClientId)
         {
-            spawnedObjectTransform.gameObject.SetActive(true);
+            carObjectTransforms[carId].gameObject.SetActive(true);
         }
     }
 
@@ -54,20 +60,20 @@ public class NetworkManagerController : NetworkBehaviour
     /// Method <c>TurnOffCarServerRpc</c> executes only on server when client requests car to stop display.
     /// </summary>
     [ServerRpc(RequireOwnership = false)]
-    private void TurnOffCarServerRpc(ServerRpcParams serverRpcParams = default)
+    private void TurnOffCarServerRpc(int carId, ServerRpcParams serverRpcParams = default)
     {
-        TurnOffCarClientRpc(serverRpcParams.Receive.SenderClientId);
+        TurnOffCarClientRpc(carId, serverRpcParams.Receive.SenderClientId);
     }
 
     /// <summary>
     /// Method <c>TurnOffCarClientRpc</c> executes only on client with specific client Id to hide the car.
     /// </summary>
     [ClientRpc]
-    private void TurnOffCarClientRpc(ulong clientID)
+    private void TurnOffCarClientRpc(int carId, ulong clientID)
     {
         if (clientID == NetworkManager.Singleton.LocalClientId)
         {
-            spawnedObjectTransform.gameObject.SetActive(false);
+            carObjectTransforms[carId].gameObject.SetActive(false);
         }
     }
 }

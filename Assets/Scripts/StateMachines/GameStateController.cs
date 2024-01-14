@@ -6,6 +6,8 @@ using static DataTypes;
 public class GameStateController : MonoBehaviour
 {
     private ControlState _gameState;
+    private UserType _userType;
+    private int _activeCarId;
     private UserInterfaceController _userInterface;
     [SerializeField] private NetworkManagerController _networkManager;
 
@@ -16,6 +18,18 @@ public class GameStateController : MonoBehaviour
     {
         get { return _gameState; }
         set { _gameState = value; }
+    }
+
+    public UserType UserType
+    {
+        get { return _userType; }
+        set { _userType = value; }
+    }
+
+    public int ActiveCarId
+    {
+        get { return _activeCarId; }
+        set { _activeCarId = value; }
     }
 
     private void Start()
@@ -32,6 +46,12 @@ public class GameStateController : MonoBehaviour
     {
         GameState = (ControlState)state;
         _userInterface.ChangeUI(GameState);
-        _networkManager.ActOnStateChange(GameState);
+        _networkManager.ActOnStateChange(GameState, ActiveCarId);
+    }
+
+    public void BackToSetup()
+    {
+        if (UserType == UserType.Manager) { ChangeGameState(4); }
+        if (UserType == UserType.Member) { ChangeGameState(5); }
     }
 }

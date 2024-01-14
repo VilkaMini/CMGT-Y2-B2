@@ -8,7 +8,9 @@ public static class DataTypes
         View3D,
         View2D,
         ViewDraw,
-        ViewCrashSelection
+        ViewCrashSelection,
+        ManagerSetup,
+        MemberSetup
     }
     
     [Serializable]
@@ -18,5 +20,12 @@ public static class DataTypes
         Right,
         Left,
         Back
+    }
+
+    [Serializable]
+    public enum UserType
+    {
+        Member,
+        Manager
     }
 }
