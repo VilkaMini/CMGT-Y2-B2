@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using static DataTypes;
 using UnityEngine;
@@ -9,18 +10,18 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject schematics3DGroup;
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject drawViewGroup;
-    [SerializeField] private GameObject setupGroup;
     
     [SerializeField] private GameObject managerScreen;
     [SerializeField] private GameObject memberScreen;
-    
-    [SerializeField] private GameObject setupNumberGroup;
-    [SerializeField] private TMP_InputField numberPlateInputField;
+
+    [SerializeField] private GameObject view2DGroup;
 
     [SerializeField] private Camera viewCam;
 
+    [SerializeField] private GameObject newCarPrefab;
+    private List<CarUIInformation> carUIInforList = new List<CarUIInformation>(){};
+
     private GameStateController _gameStateController;
-    private bool _setupComplete = false;
     
     void Start()
     {
@@ -38,7 +39,9 @@ public class UserInterfaceController : MonoBehaviour
         schematics3DGroup.SetActive(false);
         startScreen.SetActive(false);
         drawViewGroup.SetActive(false);
-        setupGroup.SetActive(false);
+        managerScreen.SetActive(false);
+        memberScreen.SetActive(false);
+        view2DGroup.SetActive(false);
         switch (gameState)
         {
             case ControlState.View3D:
@@ -46,6 +49,7 @@ public class UserInterfaceController : MonoBehaviour
                 break;
             case ControlState.View2D:
                 viewCam.orthographic = true;
+                view2DGroup.SetActive(true);
                 break;
             case ControlState.ViewCrashSelection:
                 startScreen.SetActive(true);
@@ -63,29 +67,6 @@ public class UserInterfaceController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Method <c>SetupControl</c> is used to complete the initial setup for a car.
-    /// <param name="step">integer that indicates which step of the setup is done.</param>
-    /// </summary>
-    public void SetupControl(int step)
-    {
-        if (_setupComplete)
-        {
-            _gameStateController.ChangeGameState(0);
-            return;
-        }
-
-        setupGroup.SetActive(true);
-        if (step == 0)
-        {
-            if (numberPlateInputField.text.Length == 6)
-            {
-                setupNumberGroup.SetActive(false);
-                _setupComplete = true;
-            }
-        }
-    }
-
     public void StartControl(string message)
     {
         if (message == "Host")
@@ -99,6 +80,27 @@ public class UserInterfaceController : MonoBehaviour
             NetworkManager.Singleton.StartClient();
             _gameStateController.UserType = UserType.Member;
             ChangeUI(ControlState.MemberSetup);
+        }
+    }
+
+    public void AddCar()
+    {
+        var newCarUI = Instantiate(newCarPrefab, managerScreen.transform);
+        newCarUI.transform.position = new Vector3(newCarUI.transform.position.x, newCarUI.transform.position.y - carUIInforList.Count * 200, newCarUI.transform.position.z);
+        var script = newCarUI.GetComponent<CarUIInformation>();
+        script.carId = carUIInforList.Count;
+        carUIInforList.Add(script);
+    }
+
+    public void ChangeSelected(int carId)
+    {
+        _gameStateController.ActiveCarId = carId;
+        for (int i = 0; i < carUIInforList.Count; i++)
+        {
+            if (i != carId)
+            {   
+                carUIInforList[i].Deselect();
+            }
         }
     }
 }

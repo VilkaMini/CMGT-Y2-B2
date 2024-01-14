@@ -7,8 +7,8 @@ using static DataTypes;
 public class NetworkManagerController : NetworkBehaviour
 {
     private int _activeCar = 0;
-    [SerializeField] private Transform carModelsPrefabs;
-    [SerializeField] private List<Transform> carObjectTransforms;
+    [SerializeField] private List<Transform> carModelsPrefabs;
+    [SerializeField] private List<Transform> carObjectTransforms = new List<Transform>(){};
     [SerializeField] private Transform car3DModelPrefab;
     private Transform spawnedObjectTransform;
     
@@ -17,7 +17,7 @@ public class NetworkManagerController : NetworkBehaviour
     /// </summary>
     public void SpawnModel()
     {
-        carObjectTransforms[_activeCar] = Instantiate(car3DModelPrefab);
+        carObjectTransforms.Add(Instantiate(carModelsPrefabs[_activeCar]));
         carObjectTransforms[_activeCar].GetComponent<NetworkObject>().Spawn(true);
     }
 
@@ -27,11 +27,15 @@ public class NetworkManagerController : NetworkBehaviour
     /// </summary>
     public void ActOnStateChange(ControlState gameState, int carId)
     {
-        if (gameState == ControlState.ManagerSetup || gameState == ControlState.MemberSetup) return;
+        _activeCar = carId;
+        if (gameState == ControlState.ManagerSetup || gameState == ControlState.MemberSetup) TurnOffCarServerRpc(carId);
         if (gameState == ControlState.ViewCrashSelection) TurnOffCarServerRpc(carId);
-        if (gameState == ControlState.View3D && carObjectTransforms[_activeCar]) TurnOnCarServerRpc(carId);
+        if (carObjectTransforms.Count > carId)
+        {
+            if (gameState == ControlState.View3D && carObjectTransforms[_activeCar]) TurnOnCarServerRpc(carId);
+            if (carObjectTransforms[_activeCar]) return;
+        }
         
-        if (carObjectTransforms[_activeCar]) return;
         if (IsServer) SpawnModel();
     }
 

@@ -5,7 +5,7 @@ using Vector2 = UnityEngine.Vector2;
 
 public class CameraPivotControl : MonoBehaviour
 {
-    private GameObject camera;
+    private GameObject _camera;
     private Vector2 _touchBeginPosition;
     private Vector2 _touchMovedPosition;
 
