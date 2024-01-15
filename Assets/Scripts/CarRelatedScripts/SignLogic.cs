@@ -5,6 +5,8 @@ public class SignLogic : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _floatSpeed;
 
+    public int carId;
+
     private Vector3 _initialPosition;
     private Vector3 _initialRotation = new Vector3(-90, 0, 0);
 

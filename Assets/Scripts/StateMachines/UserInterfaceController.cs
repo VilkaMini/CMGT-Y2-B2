@@ -22,6 +22,7 @@ public class UserInterfaceController : MonoBehaviour
     private List<CarUIInformation> carUIInforList = new List<CarUIInformation>(){};
 
     private GameStateController _gameStateController;
+    [SerializeField] private NetworkManagerController _networkManagerController;
     
     void Start()
     {
@@ -86,6 +87,16 @@ public class UserInterfaceController : MonoBehaviour
     public void AddCar()
     {
         var newCarUI = Instantiate(newCarPrefab, managerScreen.transform);
+        newCarUI.transform.position = new Vector3(newCarUI.transform.position.x, newCarUI.transform.position.y - carUIInforList.Count * 200, newCarUI.transform.position.z);
+        var script = newCarUI.GetComponent<CarUIInformation>();
+        script.carId = carUIInforList.Count;
+        carUIInforList.Add(script);
+        _networkManagerController.SpawnCarUIClientRpc();
+    }
+
+    public void AddMemberCar()
+    {
+        var newCarUI = Instantiate(newCarPrefab, memberScreen.transform);
         newCarUI.transform.position = new Vector3(newCarUI.transform.position.x, newCarUI.transform.position.y - carUIInforList.Count * 200, newCarUI.transform.position.z);
         var script = newCarUI.GetComponent<CarUIInformation>();
         script.carId = carUIInforList.Count;

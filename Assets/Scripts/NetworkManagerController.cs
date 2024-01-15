@@ -8,15 +8,19 @@ public class NetworkManagerController : NetworkBehaviour
 {
     private int _activeCar = 0;
     [SerializeField] private List<Transform> carModelsPrefabs;
-    [SerializeField] private List<Transform> carObjectTransforms = new List<Transform>(){};
-    [SerializeField] private Transform car3DModelPrefab;
+    [SerializeField] private List<Transform> carObjectTransforms = new List<Transform>(){}; 
+    [SerializeField] public List<GameObject> allSigns = new List<GameObject>(){};
     private Transform spawnedObjectTransform;
+
+    [SerializeField] private UserInterfaceController _userInterfaceController;
+    [SerializeField] private GameStateController _gameStateController;
     
     /// <summary>
     /// Method <c>SpawnModel</c> spawns model on the network.
     /// </summary>
     public void SpawnModel()
     {
+        print("Spawning the car");
         carObjectTransforms.Add(Instantiate(carModelsPrefabs[_activeCar]));
         carObjectTransforms[_activeCar].GetComponent<NetworkObject>().Spawn(true);
     }
@@ -30,13 +34,22 @@ public class NetworkManagerController : NetworkBehaviour
         _activeCar = carId;
         if (gameState == ControlState.ManagerSetup || gameState == ControlState.MemberSetup) TurnOffCarServerRpc(carId);
         if (gameState == ControlState.ViewCrashSelection) TurnOffCarServerRpc(carId);
-        if (carObjectTransforms.Count > carId)
+        if (IsServer && carObjectTransforms.Count == carId)
         {
-            if (gameState == ControlState.View3D && carObjectTransforms[_activeCar]) TurnOnCarServerRpc(carId);
-            if (carObjectTransforms[_activeCar]) return;
+            SpawnModel();
         }
-        
-        if (IsServer) SpawnModel();
+
+        if (IsClient)
+        {
+            if (gameState == ControlState.View3D) TurnOnCarServerRpc(carId);
+        }
+    }
+
+    [ClientRpc]
+    public void SpawnCarUIClientRpc()
+    {
+        if (IsHost) return;
+        _userInterfaceController.AddMemberCar();
     }
 
     /// <summary>
@@ -45,19 +58,36 @@ public class NetworkManagerController : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void TurnOnCarServerRpc(int carId ,ServerRpcParams serverRpcParams = default)
     {
-        TurnOnCarClientRpc(carId ,serverRpcParams.Receive.SenderClientId);
+        if (IsServer)
+        {
+            print("Turn on car host for id:" + serverRpcParams.Receive.SenderClientId);
+            carObjectTransforms[carId].gameObject.SetActive(true);
+        }
+        else if (IsClient)
+        {
+            print("Turn on car client for id:" + serverRpcParams.Receive.SenderClientId);
+            carObjectTransforms[carId].gameObject.GetComponent<NetworkObject>().NetworkShow(serverRpcParams.Receive.SenderClientId);
+        }
     }
 
     /// <summary>
     /// Method <c>TurnOnCarClientRpc</c> executes only on client with specific client Id to show the car.
     /// </summary>
-    [ClientRpc]
-    private void TurnOnCarClientRpc(int carId, ulong clientID)
+    private void TurnOnCar(int carId, ulong clientID)
     {
-        if (clientID == NetworkManager.Singleton.LocalClientId)
-        {
-            carObjectTransforms[carId].gameObject.SetActive(true);
-        }
+        //carObjectTransforms[carId].gameObject.GetComponent<NetworkObject>().NetworkHide(serverRpcParams.Receive.SenderClientId);
+        //if (clientID == NetworkManager.Singleton.LocalClientId)
+        //{
+            carObjectTransforms[carId].gameObject.GetComponent<NetworkObject>().NetworkShow(clientID);
+            //carObjectTransforms[carId].gameObject.SetActive(true);
+            // for (int i = 0; i < allSigns.Count; i++)
+            // {
+            //     if (allSigns[i].GetComponent<SignLogic>().carId == _gameStateController.ActiveCarId)
+            //     {
+            //         allSigns[i].SetActive(true);
+            //     }
+            // }
+        //}
     }
 
     /// <summary>
@@ -66,18 +96,50 @@ public class NetworkManagerController : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void TurnOffCarServerRpc(int carId, ServerRpcParams serverRpcParams = default)
     {
-        TurnOffCarClientRpc(carId, serverRpcParams.Receive.SenderClientId);
+        if (IsServer)
+        {
+            print("Turn off car host for id:" + serverRpcParams.Receive.SenderClientId);
+            carObjectTransforms[carId].gameObject.SetActive(false);
+        }
+        else if (IsClient)
+        {
+            print("Turn off car client for id:" + serverRpcParams.Receive.SenderClientId);
+            carObjectTransforms[carId].gameObject.GetComponent<NetworkObject>().NetworkHide(serverRpcParams.Receive.SenderClientId);
+        }
+
+        
+        //if (serverRpcParams.Receive.SenderClientId == NetworkManager.Singleton.LocalClientId)
+        //{
+        
+        
+            //carObjectTransforms[carId].gameObject.SetActive(false);
+            //for (int i = 0; i < allSigns.Count; i++)
+            //{
+            //     if (allSigns[i].GetComponent<SignLogic>().carId == _gameStateController.ActiveCarId)
+            //     {
+            //         allSigns[i].SetActive(false);
+            //     }
+            // }
+        //}
+        //TurnOffCarClientRpc(carId, serverRpcParams.Receive.SenderClientId);
     }
 
     /// <summary>
     /// Method <c>TurnOffCarClientRpc</c> executes only on client with specific client Id to hide the car.
     /// </summary>
-    [ClientRpc]
-    private void TurnOffCarClientRpc(int carId, ulong clientID)
+    private void TurnOffCar(int carId, ulong clientID)
     {
         if (clientID == NetworkManager.Singleton.LocalClientId)
         {
-            carObjectTransforms[carId].gameObject.SetActive(false);
+            carObjectTransforms[carId].gameObject.GetComponent<NetworkObject>().NetworkHide(clientID);
+            //carObjectTransforms[carId].gameObject.SetActive(false);
+            //for (int i = 0; i < allSigns.Count; i++)
+            //{
+            //     if (allSigns[i].GetComponent<SignLogic>().carId == _gameStateController.ActiveCarId)
+            //     {
+            //         allSigns[i].SetActive(false);
+            //     }
+            // }
         }
     }
 }

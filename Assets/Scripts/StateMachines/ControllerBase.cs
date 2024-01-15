@@ -6,6 +6,7 @@ public class ControllerBase : MonoBehaviour
 {
     protected GameStateController stateController;
     protected InputManager inputManager;
+    public NetworkManagerController _networkManagerController;
     void Awake()
     {
         stateController = GetComponent<GameStateController>();

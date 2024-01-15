@@ -91,8 +91,8 @@ public class DrawViewController : ControllerBase
             Debug.DrawRay(lineRenderComp.bounds.center, newLine.transform.forward * 1000, Color.yellow, duration:500);
             if (hit.transform.gameObject.tag == "CarPart")
             {
-                Debug.Log(hit.point);
-                hit.collider.gameObject.GetComponentInParent<CarSignManager>().PlaceSignAtLocation(hit.point);
+                _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
+                    .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
             }
         }
         
