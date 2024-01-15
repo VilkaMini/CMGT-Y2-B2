@@ -46,7 +46,6 @@ public class GameStateController : MonoBehaviour
     {
         GameState = (ControlState)state;
         _userInterface.ChangeUI(GameState);
-        print(ActiveCarId);
         _networkManager.ActOnStateChange(GameState, ActiveCarId);
     }
 

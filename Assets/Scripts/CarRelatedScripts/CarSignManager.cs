@@ -14,6 +14,7 @@ public class CarSignManager : MonoBehaviour
         GameObject signObject = Instantiate(signPrefab, location, Quaternion.Euler(-90, 0, 0), transform);
         signObject.GetComponent<SignLogic>().carId = carId;
         signObject.GetComponent<MeshRenderer>().material = CraftMaterial(0);
+        signObject.GetComponent<NetworkObject>().SpawnWithObservers = false;
         signObject.GetComponent<NetworkObject>().Spawn();
         return signObject;
     }

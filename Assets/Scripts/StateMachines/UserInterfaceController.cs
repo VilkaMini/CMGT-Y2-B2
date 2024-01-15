@@ -10,6 +10,7 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject schematics3DGroup;
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject drawViewGroup;
+    [SerializeField] private GameObject drawToggle;
     
     [SerializeField] private GameObject managerScreen;
     [SerializeField] private GameObject memberScreen;
@@ -80,6 +81,7 @@ public class UserInterfaceController : MonoBehaviour
         {
             NetworkManager.Singleton.StartClient();
             _gameStateController.UserType = UserType.Member;
+            drawToggle.SetActive(false);
             ChangeUI(ControlState.MemberSetup);
         }
     }

@@ -98,4 +98,19 @@ public class DrawViewController : ControllerBase
         
         Destroy(newLine);
     }
+
+
+    public void TestSign()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(viewCam.transform.position, viewCam.transform.forward, out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(viewCam.transform.position, viewCam.transform.forward * 1000, Color.yellow, duration:500);
+            if (hit.transform.gameObject.tag == "CarPart")
+            {
+                _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
+                    .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
+            }
+        }
+    }
 }
