@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2869361556
+  GlobalObjectIdHash: 420517915
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1247,11 +1247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33718f3e51c9e654ab2c362df0c25b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signPrefab: {fileID: 1567207068351817963, guid: e4a50bf88bc7a864596a494c418a08c9,
-    type: 3}
-  signTextures:
-  - {fileID: 2800000, guid: 1ebd5630910bcc64a9075ac148e85322, type: 3}
-  baseMat: {fileID: 2100000, guid: cf9ebef3added5441bb2f58a1f6087f2, type: 2}
+  signPrefabs:
+  - {fileID: 2400612757215175129, guid: b2bdf742e151ab9489d4e630620d7400, type: 3}
 --- !u!1 &5136252049295359259
 GameObject:
   m_ObjectHideFlags: 0

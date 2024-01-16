@@ -15,6 +15,7 @@ public class DrawViewController : ControllerBase
 
     private Touch currentTouch;
     private Vector3 drawOffset;
+    private int _signId = 0;
     
     void Update()
     {
@@ -92,25 +93,30 @@ public class DrawViewController : ControllerBase
             if (hit.transform.gameObject.tag == "CarPart")
             {
                 _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
-                    .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
+                    .PlaceSignAtLocation(hit.point, stateController.ActiveCarId, _signId));
             }
         }
         
         Destroy(newLine);
     }
 
-
-    public void TestSign()
+    public void ChangeSignPrefab(int signId)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(viewCam.transform.position, viewCam.transform.forward, out hit, Mathf.Infinity))
-        {
-            Debug.DrawRay(viewCam.transform.position, viewCam.transform.forward * 1000, Color.yellow, duration:500);
-            if (hit.transform.gameObject.tag == "CarPart")
-            {
-                _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
-                    .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
-            }
-        }
+        _signId = signId;
     }
+
+
+    // public void TestSign()
+    // {
+    //     RaycastHit hit;
+    //     if (Physics.Raycast(viewCam.transform.position, viewCam.transform.forward, out hit, Mathf.Infinity))
+    //     {
+    //         Debug.DrawRay(viewCam.transform.position, viewCam.transform.forward * 1000, Color.yellow, duration:500);
+    //         if (hit.transform.gameObject.tag == "CarPart")
+    //         {
+    //             _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
+    //                 .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
+    //         }
+    //     }
+    // }
 }

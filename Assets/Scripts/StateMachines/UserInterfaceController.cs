@@ -11,6 +11,7 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject drawViewGroup;
     [SerializeField] private GameObject drawToggle;
+    [SerializeField] private GameObject infoManualGroup;
     
     [SerializeField] private GameObject managerScreen;
     [SerializeField] private GameObject memberScreen;
@@ -67,6 +68,11 @@ public class UserInterfaceController : MonoBehaviour
                 memberScreen.SetActive(true);
                 break;
         }
+    }
+
+    public void ChangeNonOperationalUIInfo(bool open)
+    {
+        infoManualGroup.SetActive(open);
     }
 
     public void StartControl(string message)
