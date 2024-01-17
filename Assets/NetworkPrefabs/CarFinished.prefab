@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 420517915
+  GlobalObjectIdHash: 2869361556
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1248,7 +1248,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signPrefabs:
-  - {fileID: 2400612757215175129, guid: b2bdf742e151ab9489d4e630620d7400, type: 3}
+  - {fileID: 1025823663614439061, guid: ed5e92159e637224588fee11f2ea6e82, type: 3}
+  - {fileID: 1025823663614439061, guid: 96997d9bd0ce7a143b269cc429f6b4d0, type: 3}
+  - {fileID: 1025823663614439061, guid: 60d1eeed13af6d64480784cd30f5f2b5, type: 3}
+  - {fileID: 1025823663614439061, guid: bba84edf14c81d34c92d9f77119fd881, type: 3}
+  - {fileID: 1025823663614439061, guid: 716d4a8fdf012e8428e5e59ebf181c8a, type: 3}
+  - {fileID: 1025823663614439061, guid: 965f83a967ac06043944d2accf58c1df, type: 3}
+  - {fileID: 1025823663614439061, guid: f63e4bd4da8bc84419613ff9d1d77ffa, type: 3}
 --- !u!1 &5136252049295359259
 GameObject:
   m_ObjectHideFlags: 0
