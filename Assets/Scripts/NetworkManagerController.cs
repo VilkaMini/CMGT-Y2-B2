@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -13,7 +12,6 @@ public class NetworkManagerController : NetworkBehaviour
     private Transform spawnedObjectTransform;
 
     [SerializeField] private UserInterfaceController _userInterfaceController;
-    [SerializeField] private GameStateController _gameStateController;
     
     /// <summary>
     /// Method <c>SpawnModel</c> spawns model on the network.
@@ -28,6 +26,7 @@ public class NetworkManagerController : NetworkBehaviour
     /// <summary>
     /// Method <c>ActOnStateChange</c> changes the networked objects based on state of game on client.
     /// <param name="gameState">ControlState used to proceed with logic.</param>
+    /// <param name="carId">int used to indicate car.</param>
     /// </summary>
     public void ActOnStateChange(ControlState gameState, int carId)
     {
@@ -76,11 +75,12 @@ public class NetworkManagerController : NetworkBehaviour
 
     /// <summary>
     /// Method <c>TurnOnCarServerRpc</c> executes only on server when client requests car to display.
+    /// <param name="carId">int used to indicate car.</param>
+    /// <param name="serverRpcParams">serverRpcParams used to get client id.</param>
     /// </summary>
     [ServerRpc(RequireOwnership = false)]
     private void TurnOnCarServerRpc(int carId ,ServerRpcParams serverRpcParams = default)
     {
-        print("On- CarID: "+ carId + "Client ID: " + serverRpcParams.Receive.SenderClientId);
         if (NetworkManager.Singleton.LocalClientId == serverRpcParams.Receive.SenderClientId)
         {
             carObjectTransforms[carId].gameObject.SetActive(true);
@@ -97,6 +97,8 @@ public class NetworkManagerController : NetworkBehaviour
 
     /// <summary>
     /// Method <c>TurnOffCarServerRpc</c> executes only on server when client requests car to stop display.
+    /// <param name="carId">int used to indicate car.</param>
+    /// <param name="serverRpcParams">serverRpcParams used to get client id.</param>
     /// </summary>
     [ServerRpc(RequireOwnership = false)]
     private void TurnOffCarServerRpc(int carId, ServerRpcParams serverRpcParams = default)
@@ -114,9 +116,15 @@ public class NetworkManagerController : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>SignVisibilityToggle</c> executes only on server when client requests to stop display.
+    /// <param name="show">bool to indicate to show or not show signs.</param>
+    /// <param name="client">bool to indicate if client or host.</param>
+    /// <param name="clientID">ulonh client id.</param>
+    /// <param name="carId">int used to indicate car.</param>
+    /// </summary>
     private void SignVisibilityToggle(bool show, bool client ,ulong clientID, int carId)
     {
-        Debug.Log("Visibility: " + show + " CarID: " + carId);
         for (int i = 0; i < allSigns.Count; i++)
         {
             if (allSigns[i].GetComponent<SignLogic>().carId == carId)

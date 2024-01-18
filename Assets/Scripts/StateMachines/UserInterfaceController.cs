@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using TMPro;
 using static DataTypes;
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.Serialization;
 
 public class UserInterfaceController : MonoBehaviour
 {
@@ -28,7 +26,6 @@ public class UserInterfaceController : MonoBehaviour
     
     void Start()
     {
-        // Form array of Images and set all to invisible apart from first one
         _gameStateController = GetComponent<GameStateController>();
     }
     
@@ -70,16 +67,28 @@ public class UserInterfaceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>ChangeNonOperationalUIInfo</c> is used by Buttons to open info manual group.
+    /// <param name="open">ControlState that indicates which state the ui should be activated.</param>
+    /// </summary>
     public void ChangeNonOperationalUIInfo(bool open)
     {
         infoManualGroup.SetActive(open);
     }
     
+    /// <summary>
+    /// Method <c>GoBackToSetupFirstPage</c> is used by Buttons to open start screen group.
+    /// <param name="open">ControlState that indicates which state the ui should be activated.</param>
+    /// </summary>
     public void GoBackToSetupFirstPage(bool open)
     {
         startScreen.SetActive(open);
     }
 
+    /// <summary>
+    /// Method <c>StartControl</c> is used to start the server or get back to the 3D view.
+    /// <param name="message">string contains either Host or Client keywords.</param>
+    /// </summary>
     public void StartControl(string message)
     {
         if (message == "Host")
@@ -103,6 +112,9 @@ public class UserInterfaceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method <c>AddCar</c> is used to add a car UI to the host and client screens.
+    /// </summary>
     public void AddCar()
     {
         var newCarUI = Instantiate(newCarPrefab, managerScreen.transform);
@@ -113,6 +125,9 @@ public class UserInterfaceController : MonoBehaviour
         _networkManagerController.SpawnCarUIClientRpc();
     }
 
+    /// <summary>
+    /// Method <c>AddMemberCar</c> is used to add a car UI to the client side.
+    /// </summary>
     public void AddMemberCar()
     {
         var newCarUI = Instantiate(newCarPrefab, memberScreen.transform);
@@ -122,6 +137,10 @@ public class UserInterfaceController : MonoBehaviour
         carUIInforList.Add(script);
     }
 
+    /// <summary>
+    /// Method <c>ChangeSelected</c> is used to change a selected car id.
+    /// <param name="carId">int indicates selected car id.</param>
+    /// </summary>
     public void ChangeSelected(int carId)
     {
         _gameStateController.ActiveCarId = carId;

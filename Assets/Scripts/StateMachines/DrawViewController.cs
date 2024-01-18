@@ -89,7 +89,6 @@ public class DrawViewController : ControllerBase
         RaycastHit hit;
         if (Physics.Raycast(lineRenderComp.bounds.center, newLine.transform.forward, out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(lineRenderComp.bounds.center, newLine.transform.forward * 1000, Color.yellow, duration:500);
             if (hit.transform.gameObject.tag == "CarPart")
             {
                 _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
@@ -100,23 +99,12 @@ public class DrawViewController : ControllerBase
         Destroy(newLine);
     }
 
+    /// <summary>
+    /// Method <c>ChangeSignPrefab</c> is used to change the id of active sign prefab.
+    /// <param name="signId">int defines the index of sign prefab</param>
+    /// </summary>
     public void ChangeSignPrefab(int signId)
     {
         _signId = signId;
     }
-
-
-    // public void TestSign()
-    // {
-    //     RaycastHit hit;
-    //     if (Physics.Raycast(viewCam.transform.position, viewCam.transform.forward, out hit, Mathf.Infinity))
-    //     {
-    //         Debug.DrawRay(viewCam.transform.position, viewCam.transform.forward * 1000, Color.yellow, duration:500);
-    //         if (hit.transform.gameObject.tag == "CarPart")
-    //         {
-    //             _networkManagerController.allSigns.Add(hit.collider.gameObject.GetComponentInParent<CarSignManager>()
-    //                 .PlaceSignAtLocation(hit.point, stateController.ActiveCarId));
-    //         }
-    //     }
-    // }
 }

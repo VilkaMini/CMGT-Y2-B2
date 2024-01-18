@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using static DataTypes;
 
@@ -49,6 +48,9 @@ public class GameStateController : MonoBehaviour
         _networkManager.ActOnStateChange(GameState, ActiveCarId);
     }
 
+    /// <summary>
+    /// Method <c>BackToSetup</c> is used to go back to setup screen and reset states.
+    /// </summary>
     public void BackToSetup()
     {
         if (UserType == UserType.Manager) { ChangeGameState(4); }

@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CarUIInformation : MonoBehaviour
 {
-    public string carName;
-    public string carNumber;
     public bool selected = false;
     public int carId;
 
@@ -19,6 +16,9 @@ public class CarUIInformation : MonoBehaviour
         _userInterfaceController = FindObjectOfType<UserInterfaceController>();
     }
 
+    /// <summary>
+    /// Method <c>SelectDeselect</c> flips the UI image of button.
+    /// </summary>
     public void SelectDeselect()
     {
         selected = !selected;
@@ -26,6 +26,9 @@ public class CarUIInformation : MonoBehaviour
         _userInterfaceController.ChangeSelected(carId);
     }
 
+    /// <summary>
+    /// Method <c>Deselect</c> deselects the UI image of button (specific case).
+    /// </summary>
     public void Deselect()
     {
         selected = false;

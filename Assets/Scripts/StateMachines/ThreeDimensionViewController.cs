@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using static DataTypes;
 
@@ -72,7 +71,7 @@ public class ThreeDimensionViewController : ControllerBase
 
         if (_inputDrivenRotation)
         {
-            cameraPivot.transform.rotation = Quaternion.Euler(_pivotRotationY, _pivotRotationX, 0);
+            cameraPivot.transform.rotation = Quaternion.Euler(-_pivotRotationY, -_pivotRotationX, 0);
         }
         else
         {
