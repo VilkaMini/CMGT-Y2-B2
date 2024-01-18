@@ -74,18 +74,29 @@ public class UserInterfaceController : MonoBehaviour
     {
         infoManualGroup.SetActive(open);
     }
+    
+    public void GoBackToSetupFirstPage(bool open)
+    {
+        startScreen.SetActive(open);
+    }
 
     public void StartControl(string message)
     {
         if (message == "Host")
         {
-            NetworkManager.Singleton.StartHost();
+            if (!_networkManagerController.IsHost)
+            {
+                NetworkManager.Singleton.StartHost();
+            }
             _gameStateController.UserType = UserType.Manager;
             ChangeUI(ControlState.ManagerSetup);
         }
         else if (message == "Client")
         {
-            NetworkManager.Singleton.StartClient();
+            if (!_networkManagerController.IsClient)
+            {
+                NetworkManager.Singleton.StartClient();
+            }
             _gameStateController.UserType = UserType.Member;
             drawToggle.SetActive(false);
             ChangeUI(ControlState.MemberSetup);
