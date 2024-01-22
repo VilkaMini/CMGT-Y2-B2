@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using static DataTypes;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class UserInterfaceController : MonoBehaviour
 {
@@ -17,12 +19,16 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject view2DGroup;
 
     [SerializeField] private Camera viewCam;
+    [SerializeField] private Image shaderControl;
+    [SerializeField] private List<Sprite> shaderControlSprites;
 
     [SerializeField] private GameObject newCarPrefab;
     private List<CarUIInformation> carUIInforList = new List<CarUIInformation>(){};
 
     private GameStateController _gameStateController;
     [SerializeField] private NetworkManagerController _networkManagerController;
+
+    private int currentWireframeState = 1;
     
     void Start()
     {
@@ -151,5 +157,14 @@ public class UserInterfaceController : MonoBehaviour
                 carUIInforList[i].Deselect();
             }
         }
+    }
+
+    public void ChangeCarShaderVisibility()
+    {
+        if (currentWireframeState == 1) { currentWireframeState = 0; }
+        else { currentWireframeState = 1; }
+        shaderControl.sprite = shaderControlSprites[currentWireframeState];
+        CarSignManager car = FindObjectOfType<CarSignManager>();
+        car.ChangeShaderMaterial(currentWireframeState);
     }
 }

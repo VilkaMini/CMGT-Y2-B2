@@ -103,7 +103,6 @@ public class NetworkManagerController : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void TurnOffCarServerRpc(int carId, ServerRpcParams serverRpcParams = default)
     {
-        print("Off- CarID: "+ carId + "Client ID: " + serverRpcParams.Receive.SenderClientId);
         if (NetworkManager.Singleton.LocalClientId == serverRpcParams.Receive.SenderClientId)
         {
             carObjectTransforms[carId].gameObject.SetActive(false);

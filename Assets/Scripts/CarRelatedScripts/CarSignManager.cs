@@ -5,6 +5,8 @@ using UnityEngine;
 public class CarSignManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> signPrefabs;
+    [SerializeField] private List<MeshRenderer> shaderMeshes;
+    [SerializeField] private List<Material> materials;
 
     /// <summary>
     /// Method <c>PlaceSignAtLocation</c> places a sign prefab defined in a list when called.
@@ -18,5 +20,13 @@ public class CarSignManager : MonoBehaviour
         signObject.GetComponent<SignLogic>().carId = carId;
         signObject.GetComponent<NetworkObject>().Spawn();
         return signObject;
+    }
+
+    public void ChangeShaderMaterial(int matId)
+    {
+        for (int i = 0; i < shaderMeshes.Count; i++)
+        {
+            shaderMeshes[i].material = materials[matId];
+        }
     }
 }

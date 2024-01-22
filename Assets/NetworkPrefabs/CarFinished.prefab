@@ -1255,6 +1255,17 @@ MonoBehaviour:
   - {fileID: 1025823663614439061, guid: 965f83a967ac06043944d2accf58c1df, type: 3}
   - {fileID: 1025823663614439061, guid: bba84edf14c81d34c92d9f77119fd881, type: 3}
   - {fileID: 1025823663614439061, guid: f63e4bd4da8bc84419613ff9d1d77ffa, type: 3}
+  shaderMeshes:
+  - {fileID: 6871926280887149875}
+  - {fileID: 7185344530624950882}
+  - {fileID: 6701696427336611310}
+  - {fileID: 7188113563976337778}
+  - {fileID: 3431746150823487042}
+  - {fileID: 1909884238819061767}
+  - {fileID: 9121447680946365767}
+  materials:
+  - {fileID: 2100000, guid: 74d4400061821be409f9beeba58cd83c, type: 2}
+  - {fileID: 2100000, guid: 70ccce207e8268342b2c106b923238e6, type: 2}
 --- !u!1 &5136252049295359259
 GameObject:
   m_ObjectHideFlags: 0
