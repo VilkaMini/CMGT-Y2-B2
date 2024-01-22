@@ -103,6 +103,14 @@ public class ThreeDimensionViewController : ControllerBase
                 _pivotRotationY = 0.0f;
                 _pivotRotationX = -90.0f;
                 break;
+            case RotationSide.Top:
+                _pivotRotationY = 90.0f;
+                _pivotRotationX = 0.0f;
+                break;
+            case RotationSide.Down:
+                _pivotRotationY = -90.0f;
+                _pivotRotationX = 0.0f;
+                break;
         }
         lerpValue = 0.0f;
     }

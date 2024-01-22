@@ -19,7 +19,9 @@ public static class DataTypes
         Front,
         Right,
         Left,
-        Back
+        Back,
+        Top,
+        Down
     }
 
     [Serializable]
