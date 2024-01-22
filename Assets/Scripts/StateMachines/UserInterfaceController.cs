@@ -12,6 +12,7 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private GameObject drawViewGroup;
     [SerializeField] private GameObject drawToggle;
     [SerializeField] private GameObject infoManualGroup;
+    [SerializeField] private GameObject overviewGroup;
     
     [SerializeField] private GameObject managerScreen;
     [SerializeField] private GameObject memberScreen;
@@ -80,6 +81,15 @@ public class UserInterfaceController : MonoBehaviour
     public void ChangeNonOperationalUIInfo(bool open)
     {
         infoManualGroup.SetActive(open);
+    }
+    
+    /// <summary>
+    /// Method <c>ChangeNonOperationalUIInfo</c> is used by Buttons to open info manual group.
+    /// <param name="open">ControlState that indicates which state the ui should be activated.</param>
+    /// </summary>
+    public void ChangeOverviewUIInfo(bool open)
+    {
+        overviewGroup.SetActive(open);
     }
     
     /// <summary>
